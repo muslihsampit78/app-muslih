@@ -157,4 +157,41 @@ class ApiV1Test extends TestCase
                 ],
             ]);
     }
+
+    public function test_api_validation_supports_indonesian_language(): void
+    {
+        $response = $this->withHeaders(['Accept-Language' => 'id'])
+            ->postJson('/api/v1/questions', []);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['name', 'email', 'subject', 'body']);
+
+        $nameError = $response->json('errors.name.0');
+        $this->assertTrue(str_contains(strtolower($nameError), 'wajib diisi') || str_contains(strtolower($nameError), 'harus diisi'));
+    }
+
+    public function test_api_validation_supports_english_language(): void
+    {
+        $response = $this->withHeaders(['Accept-Language' => 'en'])
+            ->postJson('/api/v1/questions', []);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['name', 'email', 'subject', 'body']);
+
+        $nameError = $response->json('errors.name.0');
+        $this->assertTrue(str_contains(strtolower($nameError), 'required'));
+    }
+
+    public function test_api_supports_query_param_language_switch(): void
+    {
+        $responseEn = $this->postJson('/api/v1/questions?lang=en', []);
+        $responseEn->assertStatus(422);
+        $nameErrorEn = $responseEn->json('errors.name.0');
+        $this->assertTrue(str_contains(strtolower($nameErrorEn), 'required'));
+
+        $responseId = $this->postJson('/api/v1/questions?lang=id', []);
+        $responseId->assertStatus(422);
+        $nameErrorId = $responseId->json('errors.name.0');
+        $this->assertTrue(str_contains(strtolower($nameErrorId), 'wajib diisi') || str_contains(strtolower($nameErrorId), 'harus diisi'));
+    }
 }

@@ -318,7 +318,8 @@ flowchart LR
 ### Fase 5: Polish & Deployment ⏱️ ~2 hari
 
 - [x] Dashboard widget (statistik artikel, pertanyaan masuk, list artikel & pertanyaan terbaru)
-- [x] Testing (unit & feature tests: 15 tests, 186 assertions - 100% passing)
+- [x] Multi-Language Support (Bahasa Indonesia `id` & English `en`) via `laravel-lang/common`, `bezhansalleh/filament-language-switch`, dan middleware `SetLocale`
+- [x] Testing (unit & feature tests: 18 tests, 204 assertions - 100% passing)
 - [x] Formatter Laravel Pint diterapkan ke seluruh file baru
 - [ ] Deployment ke server production / cloud
 
