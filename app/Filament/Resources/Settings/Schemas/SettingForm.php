@@ -14,41 +14,41 @@ class SettingForm
         return $schema
             ->components([
                 Select::make('group')
-                    ->label('Grup')
+                    ->label(__('Group'))
                     ->options([
-                        'general' => 'Umum',
-                        'contact' => 'Kontak',
-                        'social' => 'Media Sosial',
-                        'system' => 'Sistem',
+                        'general' => __('General'),
+                        'contact' => __('Contact'),
+                        'social' => __('Social Media'),
+                        'system' => __('System'),
                     ])
                     ->default('general')
                     ->required(),
                 TextInput::make('key')
-                    ->label('Kunci (Key)')
+                    ->label(__('Key'))
                     ->required()
                     ->unique(ignoreRecord: true)
-                    ->helperText('Contoh: site_name, contact_email'),
+                    ->helperText(__('Example: site_name, contact_email')),
                 TextInput::make('name')
-                    ->label('Nama Label')
+                    ->label(__('Label Name'))
                     ->required(),
                 Select::make('type')
-                    ->label('Tipe Data')
+                    ->label(__('Data Type'))
                     ->options([
-                        'text' => 'Teks Singkat',
-                        'textarea' => 'Teks Panjang',
-                        'image' => 'Gambar / Logo',
-                        'boolean' => 'Boolean (True/False)',
-                        'json' => 'JSON',
+                        'text' => __('Short Text'),
+                        'textarea' => __('Long Text'),
+                        'image' => __('Image / Logo'),
+                        'boolean' => __('Boolean (True/False)'),
+                        'json' => __('JSON'),
                     ])
                     ->default('text')
                     ->reactive()
                     ->required(),
                 Textarea::make('value')
-                    ->label('Nilai Pengaturan')
+                    ->label(__('Setting Value'))
                     ->rows(4)
                     ->columnSpanFull(),
                 Textarea::make('description')
-                    ->label('Keterangan')
+                    ->label(__('Description / Note'))
                     ->rows(2)
                     ->columnSpanFull(),
             ]);

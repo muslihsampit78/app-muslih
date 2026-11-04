@@ -11,9 +11,9 @@ enum AnswerStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::Draft => 'Draf',
-            self::Published => 'Diterbitkan ke Publik',
-            self::Rejected => 'Ditolak / Rahasia',
+            self::Draft => __('Draft'),
+            self::Published => __('Published to Public'),
+            self::Rejected => __('Rejected / Confidential'),
         };
     }
 

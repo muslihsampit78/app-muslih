@@ -11,9 +11,9 @@ enum PostStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::Draft => 'Draf',
-            self::Published => 'Diterbitkan',
-            self::Archived => 'Diarsipkan',
+            self::Draft => __('Draft'),
+            self::Published => __('Published'),
+            self::Archived => __('Archived'),
         };
     }
 

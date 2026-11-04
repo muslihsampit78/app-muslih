@@ -11,9 +11,9 @@ enum QuestionStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::Pending => 'Menunggu Jawaban',
-            self::Answered => 'Sudah Dijawab',
-            self::Rejected => 'Ditolak',
+            self::Pending => __('Pending'),
+            self::Answered => __('Answered'),
+            self::Rejected => __('Rejected'),
         };
     }
 

@@ -13,7 +13,6 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 
 class QuestionTopicResource extends Resource
 {
@@ -21,17 +20,29 @@ class QuestionTopicResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
 
-    protected static UnitEnum|string|null $navigationGroup = 'Pertanyaan Masyarakat';
-
-    protected static ?string $navigationLabel = 'Topik Pertanyaan';
-
-    protected static ?string $modelLabel = 'Topik';
-
-    protected static ?string $pluralModelLabel = 'Topik Pertanyaan';
-
     protected static ?int $navigationSort = 1;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Community Questions');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Question Topics');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Topic');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Question Topics');
+    }
 
     public static function form(Schema $schema): Schema
     {

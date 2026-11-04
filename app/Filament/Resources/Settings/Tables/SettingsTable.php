@@ -16,7 +16,7 @@ class SettingsTable
         return $table
             ->columns([
                 TextColumn::make('group')
-                    ->label('Grup')
+                    ->label(__('Group'))
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'general' => 'info',
@@ -27,36 +27,36 @@ class SettingsTable
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('name')
-                    ->label('Nama Label')
+                    ->label(__('Label Name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('key')
-                    ->label('Kunci')
+                    ->label(__('Key'))
                     ->searchable()
                     ->copyable()
                     ->color('gray')
                     ->fontFamily('mono'),
                 TextColumn::make('value')
-                    ->label('Nilai')
+                    ->label(__('Value'))
                     ->limit(40)
                     ->searchable(),
                 TextColumn::make('type')
-                    ->label('Tipe')
+                    ->label(__('Type'))
                     ->badge(),
                 TextColumn::make('updated_at')
-                    ->label('Terakhir Diperbarui')
+                    ->label(__('Last Updated'))
                     ->dateTime('d M Y H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('group')
-                    ->label('Filter Grup')
+                    ->label(__('Filter by Group'))
                     ->options([
-                        'general' => 'Umum',
-                        'contact' => 'Kontak',
-                        'social' => 'Media Sosial',
-                        'system' => 'Sistem',
+                        'general' => __('General'),
+                        'contact' => __('Contact'),
+                        'social' => __('Social Media'),
+                        'system' => __('System'),
                     ]),
             ])
             ->recordActions([

@@ -17,49 +17,49 @@ class MenuForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Menu')
+                Section::make(__('Menu Information'))
                     ->components([
                         TextInput::make('name')
-                            ->label('Nama Menu')
+                            ->label(__('Menu Name'))
                             ->required()
                             ->maxLength(255)
-                            ->placeholder('cth: Menu Utama Header'),
+                            ->placeholder(__('e.g., Main Header Menu')),
                         Select::make('location')
-                            ->label('Lokasi Menu')
+                            ->label(__('Menu Location'))
                             ->options(collect(MenuLocation::cases())->mapWithKeys(fn (MenuLocation $loc) => [
                                 $loc->value => $loc->label(),
                             ]))
                             ->default(MenuLocation::Header->value)
                             ->required(),
                         Toggle::make('is_active')
-                            ->label('Status Aktif')
+                            ->label(__('Active Status'))
                             ->default(true),
                     ])
                     ->columns(3),
 
-                Section::make('Daftar Item Menu')
+                Section::make(__('Menu Items List'))
                     ->components([
                         Repeater::make('items')
-                            ->label('Item-item Navigasi')
+                            ->label(__('Navigation Items'))
                             ->relationship('items')
                             ->orderColumn('sort_order')
                             ->schema([
                                 TextInput::make('label')
-                                    ->label('Teks Label')
+                                    ->label(__('Label Text'))
                                     ->required(),
                                 Select::make('type')
-                                    ->label('Tipe Tautan')
+                                    ->label(__('Link Type'))
                                     ->options(collect(MenuItemType::cases())->mapWithKeys(fn (MenuItemType $t) => [
                                         $t->value => $t->label(),
                                     ]))
                                     ->default(MenuItemType::Custom->value)
                                     ->required(),
                                 TextInput::make('url')
-                                    ->label('Tautan URL / Path')
-                                    ->placeholder('/tentang-kami atau https://...')
+                                    ->label(__('URL Link / Path'))
+                                    ->placeholder(__('/about-us or https://...'))
                                     ->required(),
                                 Toggle::make('is_active')
-                                    ->label('Aktif')
+                                    ->label(__('Active'))
                                     ->default(true),
                             ])
                             ->columns(4)

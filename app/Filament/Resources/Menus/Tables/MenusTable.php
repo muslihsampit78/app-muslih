@@ -19,36 +19,36 @@ class MenusTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Nama Menu')
+                    ->label(__('Menu Name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('location')
-                    ->label('Lokasi')
+                    ->label(__('Location'))
                     ->badge()
                     ->formatStateUsing(fn ($state) => $state instanceof MenuLocation ? $state->label() : MenuLocation::tryFrom($state)?->label() ?? $state)
                     ->color('info')
                     ->sortable(),
                 TextColumn::make('items_count')
-                    ->label('Jumlah Item')
+                    ->label(__('Item Count'))
                     ->counts('items')
                     ->badge()
                     ->color('gray'),
                 IconColumn::make('is_active')
-                    ->label('Status Aktif')
+                    ->label(__('Active Status'))
                     ->boolean()
                     ->sortable(),
                 TextColumn::make('updated_at')
-                    ->label('Terakhir Diperbarui')
+                    ->label(__('Last Updated'))
                     ->dateTime('d M Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('location')
-                    ->label('Filter Lokasi')
+                    ->label(__('Filter by Location'))
                     ->options(collect(MenuLocation::cases())->mapWithKeys(fn (MenuLocation $l) => [$l->value => $l->label()])),
                 TernaryFilter::make('is_active')
-                    ->label('Status Aktif'),
+                    ->label(__('Active Status')),
             ])
             ->recordActions([
                 EditAction::make(),

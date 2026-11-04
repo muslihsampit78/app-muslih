@@ -17,23 +17,23 @@ class QuestionsTable
         return $table
             ->columns([
                 TextColumn::make('created_at')
-                    ->label('Tanggal Masuk')
+                    ->label(__('Date Received'))
                     ->dateTime('d M Y H:i')
                     ->sortable(),
                 TextColumn::make('subject')
-                    ->label('Subjek Pertanyaan')
+                    ->label(__('Question Subject'))
                     ->searchable()
                     ->sortable()
                     ->limit(40)
                     ->description(fn ($record): string => $record->name.' ('.$record->email.')'),
                 TextColumn::make('topic.name')
-                    ->label('Topik')
+                    ->label(__('Topic'))
                     ->badge()
                     ->color('info')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge()
                     ->formatStateUsing(fn ($state) => $state instanceof QuestionStatus ? $state->label() : QuestionStatus::tryFrom($state)?->label() ?? $state)
                     ->color(fn ($state) => match ($state instanceof QuestionStatus ? $state : QuestionStatus::tryFrom($state)) {
@@ -43,7 +43,7 @@ class QuestionsTable
                     })
                     ->sortable(),
                 TextColumn::make('answers_count')
-                    ->label('Tanggapan')
+                    ->label(__('Responses'))
                     ->counts('answers')
                     ->badge()
                     ->color('gray')
@@ -52,14 +52,14 @@ class QuestionsTable
             ->defaultSort('created_at', 'desc')
             ->filters([
                 SelectFilter::make('status')
-                    ->label('Filter Status')
+                    ->label(__('Filter by Status'))
                     ->options(collect(QuestionStatus::cases())->mapWithKeys(fn (QuestionStatus $s) => [$s->value => $s->label()])),
                 SelectFilter::make('topic_id')
-                    ->label('Filter Topik')
+                    ->label(__('Filter by Topic'))
                     ->relationship('topic', 'name'),
             ])
             ->recordActions([
-                EditAction::make()->label('Buka & Tanggapi'),
+                EditAction::make()->label(__('Open & Respond')),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

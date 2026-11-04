@@ -16,24 +16,24 @@ class MediaTable
         return $table
             ->columns([
                 ImageColumn::make('file_path')
-                    ->label('Pratinjau')
+                    ->label(__('Preview'))
                     ->disk('public')
                     ->square(),
                 TextColumn::make('file_name')
-                    ->label('Nama Berkas')
+                    ->label(__('File Name'))
                     ->searchable()
                     ->sortable()
                     ->copyable()
-                    ->copyMessage('Nama file disalin'),
+                    ->copyMessage(__('File name copied')),
                 TextColumn::make('mime_type')
-                    ->label('Tipe MIME')
+                    ->label(__('MIME Type'))
                     ->badge(),
                 TextColumn::make('file_size')
-                    ->label('Ukuran')
+                    ->label(__('File Size'))
                     ->formatStateUsing(fn ($record) => $record->formatted_size)
                     ->sortable(),
                 TextColumn::make('created_at')
-                    ->label('Diupload')
+                    ->label(__('Uploaded At'))
                     ->dateTime('d M Y H:i')
                     ->sortable(),
             ])

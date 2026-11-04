@@ -20,17 +20,29 @@ class SettingResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
 
-    protected static \UnitEnum|string|null $navigationGroup = 'Pengaturan';
-
-    protected static ?string $navigationLabel = 'Pengaturan Situs';
-
-    protected static ?string $modelLabel = 'Pengaturan';
-
-    protected static ?string $pluralModelLabel = 'Pengaturan';
-
     protected static ?int $navigationSort = 10;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Settings');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Site Settings');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Setting');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Settings');
+    }
 
     public static function form(Schema $schema): Schema
     {

@@ -21,33 +21,33 @@ class QuestionForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Penanya & Pertanyaan')
+                Section::make(__('Inquirer & Question Information'))
                     ->components([
                         TextInput::make('name')
-                            ->label('Nama Penanya')
+                            ->label(__('Inquirer Name'))
                             ->required(),
                         TextInput::make('email')
-                            ->label('Alamat Email')
+                            ->label(__('Email Address'))
                             ->email()
                             ->required(),
                         TextInput::make('phone')
-                            ->label('Nomor Telepon / WA'),
+                            ->label(__('Phone / WhatsApp Number')),
                         Select::make('topic_id')
-                            ->label('Topik')
+                            ->label(__('Topic'))
                             ->relationship('topic', 'name')
                             ->searchable()
                             ->preload(),
                         TextInput::make('subject')
-                            ->label('Subjek Pertanyaan')
+                            ->label(__('Question Subject'))
                             ->required()
                             ->columnSpanFull(),
                         Textarea::make('body')
-                            ->label('Isi Pertanyaan Lengkap')
+                            ->label(__('Full Question Content'))
                             ->rows(4)
                             ->required()
                             ->columnSpanFull(),
                         Select::make('status')
-                            ->label('Status Pertanyaan')
+                            ->label(__('Question Status'))
                             ->options(collect(QuestionStatus::cases())->mapWithKeys(fn (QuestionStatus $s) => [
                                 $s->value => $s->label(),
                             ]))
@@ -56,28 +56,28 @@ class QuestionForm
                     ])
                     ->columns(2),
 
-                Section::make('Tanggapan / Jawaban Petugas')
+                Section::make(__('Officer Responses / Answers'))
                     ->components([
                         Repeater::make('answers')
-                            ->label('Riwayat Tanggapan')
+                            ->label(__('Response History'))
                             ->relationship('answers')
                             ->schema([
                                 RichEditor::make('body')
-                                    ->label('Isi Jawaban Petugas')
+                                    ->label(__('Officer Answer Content'))
                                     ->required()
                                     ->columnSpanFull(),
                                 Select::make('status')
-                                    ->label('Status Jawaban')
+                                    ->label(__('Answer Status'))
                                     ->options(collect(AnswerStatus::cases())->mapWithKeys(fn (AnswerStatus $s) => [
                                         $s->value => $s->label(),
                                     ]))
                                     ->default(AnswerStatus::Published->value)
                                     ->required(),
                                 Toggle::make('is_published')
-                                    ->label('Publikasikan Jawaban (Dapat Dilihat Publik)')
+                                    ->label(__('Publish Answer (Publicly Visible)'))
                                     ->default(true),
                                 DateTimePicker::make('answered_at')
-                                    ->label('Waktu Menjawab')
+                                    ->label(__('Answer Time'))
                                     ->default(now()),
                                 Hidden::make('user_id')
                                     ->default(fn () => auth()->id()),
@@ -85,7 +85,7 @@ class QuestionForm
                             ->columns(3)
                             ->collapsible()
                             ->defaultItems(0)
-                            ->addActionLabel('Beri Jawaban Baru'),
+                            ->addActionLabel(__('Provide New Answer')),
                     ]),
             ]);
     }

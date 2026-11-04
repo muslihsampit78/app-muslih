@@ -22,23 +22,23 @@ class StatsOverviewWidget extends BaseStatsOverviewWidget
         $totalViews = Post::sum('view_count');
 
         return [
-            Stat::make('Artikel Publik', number_format($publishedPosts))
-                ->description('Artikel yang aktif tayang')
+            Stat::make(__('Public Articles'), number_format($publishedPosts))
+                ->description(__('Active published articles'))
                 ->descriptionIcon(Heroicon::OutlinedDocumentText)
                 ->color('success'),
 
-            Stat::make('Pertanyaan Menunggu', number_format($pendingQuestions))
-                ->description('Perlu respon admin')
+            Stat::make(__('Pending Questions'), number_format($pendingQuestions))
+                ->description(__('Needs admin response'))
                 ->descriptionIcon(Heroicon::OutlinedClock)
                 ->color($pendingQuestions > 0 ? 'warning' : 'gray'),
 
-            Stat::make('Pertanyaan Terjawab', number_format($answeredQuestions))
-                ->description('Aspirasi terselesaikan')
+            Stat::make(__('Answered Questions'), number_format($answeredQuestions))
+                ->description(__('Aspirations resolved'))
                 ->descriptionIcon(Heroicon::OutlinedCheckCircle)
                 ->color('info'),
 
-            Stat::make('Total Pembaca Artikel', number_format($totalViews))
-                ->description('Akumulasi pembaca')
+            Stat::make(__('Total Article Readers'), number_format($totalViews))
+                ->description(__('Accumulated readers'))
                 ->descriptionIcon(Heroicon::OutlinedEye)
                 ->color('primary'),
         ];

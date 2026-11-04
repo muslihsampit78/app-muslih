@@ -16,7 +16,7 @@ class QuestionTopicForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->label('Nama Topik')
+                    ->label(__('Topic Name'))
                     ->required()
                     ->live(onBlur: true)
                     ->afterStateUpdated(function (string $operation, ?string $state, Set $set): void {
@@ -25,21 +25,21 @@ class QuestionTopicForm
                         }
                     }),
                 TextInput::make('slug')
-                    ->label('Slug')
+                    ->label(__('Slug'))
                     ->required()
                     ->unique(ignoreRecord: true),
                 TextInput::make('icon')
-                    ->label('Icon / Simbol')
-                    ->placeholder('heroicon-o-chat-bubble-bottom-center-text atau emoji'),
+                    ->label(__('Icon / Symbol'))
+                    ->placeholder(__('heroicon-o-chat-bubble-bottom-center-text or emoji')),
                 TextInput::make('sort_order')
-                    ->label('Urutan')
+                    ->label(__('Sort Order'))
                     ->numeric()
                     ->default(0),
                 Toggle::make('is_active')
-                    ->label('Status Aktif')
+                    ->label(__('Active Status'))
                     ->default(true),
                 Textarea::make('description')
-                    ->label('Deskripsi')
+                    ->label(__('Description'))
                     ->rows(3)
                     ->columnSpanFull(),
             ]);

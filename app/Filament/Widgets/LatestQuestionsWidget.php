@@ -8,15 +8,19 @@ use App\Models\Question;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 
 class LatestQuestionsWidget extends TableWidget
 {
     protected static ?int $sort = 2;
 
-    protected static ?string $heading = 'Pertanyaan Terbaru dari Masyarakat';
-
     protected int|string|array $columnSpan = 'full';
+
+    public function getTableHeading(): string|Htmlable|null
+    {
+        return __('Latest Community Questions');
+    }
 
     public function table(Table $table): Table
     {
@@ -24,21 +28,21 @@ class LatestQuestionsWidget extends TableWidget
             ->query(fn (): Builder => Question::query()->with('topic')->latest()->limit(5))
             ->columns([
                 TextColumn::make('created_at')
-                    ->label('Waktu Masuk')
+                    ->label(__('Time Received'))
                     ->dateTime('d M Y H:i')
                     ->sortable(),
                 TextColumn::make('name')
-                    ->label('Penanya')
+                    ->label(__('Inquirer'))
                     ->description(fn ($record): string => $record->email),
                 TextColumn::make('topic.name')
-                    ->label('Topik')
+                    ->label(__('Topic'))
                     ->badge()
                     ->color('info'),
                 TextColumn::make('subject')
-                    ->label('Subjek')
+                    ->label(__('Subject'))
                     ->limit(40),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge()
                     ->formatStateUsing(fn ($state) => $state instanceof QuestionStatus ? $state->label() : QuestionStatus::tryFrom($state)?->label() ?? $state)
                     ->color(fn ($state) => match ($state instanceof QuestionStatus ? $state : QuestionStatus::tryFrom($state)) {

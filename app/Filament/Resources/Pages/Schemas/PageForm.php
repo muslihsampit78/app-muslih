@@ -20,11 +20,11 @@ class PageForm
     {
         return $schema
             ->components([
-                Section::make('Konten Halaman')
+                Section::make(__('Page Content'))
                     ->columnSpan(['lg' => 2])
                     ->components([
                         TextInput::make('title')
-                            ->label('Judul Halaman')
+                            ->label(__('Page Title'))
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
@@ -34,38 +34,38 @@ class PageForm
                                 }
                             }),
                         TextInput::make('slug')
-                            ->label('Slug')
+                            ->label(__('Slug'))
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255),
                         RichEditor::make('content')
-                            ->label('Isi Konten')
+                            ->label(__('Content'))
                             ->required()
                             ->columnSpanFull(),
                     ]),
 
-                Section::make('Pengaturan & Publikasi')
+                Section::make(__('Settings & Publication'))
                     ->columnSpan(['lg' => 1])
                     ->components([
                         FileUpload::make('image')
-                            ->label('Gambar Banner / Header')
+                            ->label(__('Banner / Header Image'))
                             ->image()
                             ->disk('public')
                             ->directory('pages')
                             ->maxSize(2048),
                         Select::make('status')
-                            ->label('Status')
+                            ->label(__('Status'))
                             ->options(collect(PageStatus::cases())->mapWithKeys(fn (PageStatus $s) => [
                                 $s->value => $s->label(),
                             ]))
                             ->default(PageStatus::Published->value)
                             ->required(),
                         TextInput::make('sort_order')
-                            ->label('Urutan')
+                            ->label(__('Sort Order'))
                             ->numeric()
                             ->default(0),
                         Toggle::make('show_in_menu')
-                            ->label('Tampilkan di Menu Utama')
+                            ->label(__('Show in Main Menu'))
                             ->default(false),
                         Hidden::make('user_id')
                             ->default(fn () => auth()->id()),

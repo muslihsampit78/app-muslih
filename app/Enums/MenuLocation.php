@@ -11,9 +11,9 @@ enum MenuLocation: string
     public function label(): string
     {
         return match ($this) {
-            self::Header => 'Header (Atas)',
-            self::Footer => 'Footer (Bawah)',
-            self::Sidebar => 'Sidebar (Samping)',
+            self::Header => __('Header (Top)'),
+            self::Footer => __('Footer (Bottom)'),
+            self::Sidebar => __('Sidebar (Side)'),
         };
     }
 }

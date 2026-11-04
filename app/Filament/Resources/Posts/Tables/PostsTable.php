@@ -20,24 +20,24 @@ class PostsTable
         return $table
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Sampul')
+                    ->label(__('Cover'))
                     ->disk('public')
                     ->circular()
                     ->defaultImageUrl('/placeholder.png'),
                 TextColumn::make('title')
-                    ->label('Judul Artikel')
+                    ->label(__('Article Title'))
                     ->searchable()
                     ->sortable()
                     ->limit(40)
                     ->description(fn ($record): ?string => $record->summary ? substr($record->summary, 0, 50).'...' : null),
                 TextColumn::make('category.name')
-                    ->label('Kategori')
+                    ->label(__('Category'))
                     ->badge()
                     ->color('info')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge()
                     ->formatStateUsing(fn ($state) => $state instanceof PostStatus ? $state->label() : PostStatus::tryFrom($state)?->label() ?? $state)
                     ->color(fn ($state) => match ($state instanceof PostStatus ? $state : PostStatus::tryFrom($state)) {
@@ -47,28 +47,28 @@ class PostsTable
                     })
                     ->sortable(),
                 IconColumn::make('is_featured')
-                    ->label('Headline')
+                    ->label(__('Headline'))
                     ->boolean()
                     ->sortable(),
                 TextColumn::make('published_at')
-                    ->label('Terbit')
+                    ->label(__('Published At'))
                     ->dateTime('d M Y H:i')
                     ->sortable(),
                 TextColumn::make('view_count')
-                    ->label('Dilihat')
+                    ->label(__('Views'))
                     ->numeric()
                     ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
                 SelectFilter::make('category_id')
-                    ->label('Filter Kategori')
+                    ->label(__('Filter by Category'))
                     ->relationship('category', 'name'),
                 SelectFilter::make('status')
-                    ->label('Filter Status')
+                    ->label(__('Filter by Status'))
                     ->options(collect(PostStatus::cases())->mapWithKeys(fn (PostStatus $s) => [$s->value => $s->label()])),
                 TernaryFilter::make('is_featured')
-                    ->label('Artikel Headline'),
+                    ->label(__('Headline Article')),
             ])
             ->recordActions([
                 EditAction::make(),

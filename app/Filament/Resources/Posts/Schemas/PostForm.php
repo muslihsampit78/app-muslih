@@ -22,11 +22,11 @@ class PostForm
     {
         return $schema
             ->components([
-                Section::make('Konten Utama')
+                Section::make(__('Main Content'))
                     ->columnSpan(['lg' => 2])
                     ->components([
                         TextInput::make('title')
-                            ->label('Judul Artikel')
+                            ->label(__('Article Title'))
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
@@ -36,47 +36,47 @@ class PostForm
                                 }
                             }),
                         TextInput::make('slug')
-                            ->label('Slug')
+                            ->label(__('Slug'))
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255),
                         Textarea::make('summary')
-                            ->label('Ringkasan / Sinopsis')
+                            ->label(__('Summary / Synopsis'))
                             ->rows(3)
-                            ->helperText('Ringkasan singkat untuk tampilan kartu preview berita.'),
+                            ->helperText(__('Short summary for news preview card display.')),
                         RichEditor::make('content')
-                            ->label('Isi Artikel Lengkap')
+                            ->label(__('Full Article Content'))
                             ->required()
                             ->columnSpanFull(),
                     ]),
 
-                Section::make('Publikasi & Pengaturan')
+                Section::make(__('Publication & Settings'))
                     ->columnSpan(['lg' => 1])
                     ->components([
                         Select::make('category_id')
-                            ->label('Kategori')
+                            ->label(__('Category'))
                             ->relationship('category', 'name')
                             ->searchable()
                             ->preload()
                             ->required(),
                         FileUpload::make('image')
-                            ->label('Gambar Sampul (Thumbnail)')
+                            ->label(__('Cover Image (Thumbnail)'))
                             ->image()
                             ->disk('public')
                             ->directory('posts')
                             ->maxSize(2048),
                         Select::make('status')
-                            ->label('Status')
+                            ->label(__('Status'))
                             ->options(collect(PostStatus::cases())->mapWithKeys(fn (PostStatus $status) => [
                                 $status->value => $status->label(),
                             ]))
                             ->default(PostStatus::Draft->value)
                             ->required(),
                         DateTimePicker::make('published_at')
-                            ->label('Waktu Terbit')
+                            ->label(__('Publication Time'))
                             ->default(now()),
                         Toggle::make('is_featured')
-                            ->label('Artikel Unggulan / Headline')
+                            ->label(__('Featured Article / Headline'))
                             ->default(false),
                         Hidden::make('user_id')
                             ->default(fn () => auth()->id()),

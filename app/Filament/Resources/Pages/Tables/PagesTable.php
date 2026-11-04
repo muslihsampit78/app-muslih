@@ -20,18 +20,18 @@ class PagesTable
         return $table
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Banner')
+                    ->label(__('Banner'))
                     ->disk('public'),
                 TextColumn::make('title')
-                    ->label('Judul Halaman')
+                    ->label(__('Page Title'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('slug')
-                    ->label('Slug')
+                    ->label(__('Slug'))
                     ->searchable()
                     ->color('gray'),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge()
                     ->formatStateUsing(fn ($state) => $state instanceof PageStatus ? $state->label() : PageStatus::tryFrom($state)?->label() ?? $state)
                     ->color(fn ($state) => match ($state instanceof PageStatus ? $state : PageStatus::tryFrom($state)) {
@@ -40,14 +40,14 @@ class PagesTable
                     })
                     ->sortable(),
                 IconColumn::make('show_in_menu')
-                    ->label('Tampil di Menu')
+                    ->label(__('Show in Menu'))
                     ->boolean()
                     ->sortable(),
                 TextColumn::make('sort_order')
-                    ->label('Urutan')
+                    ->label(__('Sort Order'))
                     ->sortable(),
                 TextColumn::make('updated_at')
-                    ->label('Terakhir Diperbarui')
+                    ->label(__('Last Updated'))
                     ->dateTime('d M Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -55,10 +55,10 @@ class PagesTable
             ->defaultSort('sort_order', 'asc')
             ->filters([
                 SelectFilter::make('status')
-                    ->label('Filter Status')
+                    ->label(__('Filter by Status'))
                     ->options(collect(PageStatus::cases())->mapWithKeys(fn (PageStatus $s) => [$s->value => $s->label()])),
                 TernaryFilter::make('show_in_menu')
-                    ->label('Tampil di Menu'),
+                    ->label(__('Show in Menu')),
             ])
             ->recordActions([
                 EditAction::make(),

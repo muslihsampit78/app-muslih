@@ -10,8 +10,8 @@ enum PageStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::Draft => 'Draf',
-            self::Published => 'Diterbitkan',
+            self::Draft => __('Draft'),
+            self::Published => __('Published'),
         };
     }
 
