@@ -203,7 +203,7 @@ flowchart LR
         API["🔌 REST API\n/api/v1/*"]
         FP["🛠️ Filament Admin Panel\n/admin"]
         Models["📦 Models & Business Logic"]
-        DB[("🗄️ Database\nMySQL/PostgreSQL")]
+        DB[("🗄️ Database\nMySQL (Laragon)")]
     end
 
     FA -->|"HTTP Requests\n(JSON)"| API
@@ -219,25 +219,25 @@ flowchart LR
 
 ### Modul 1: CMS (Content Management System)
 
-| Fitur | Deskripsi |
-|-------|-----------|
-| **Manajemen Post/Artikel** | CRUD artikel dengan kategori, gambar unggulan, status draft/publish/archived, rich text editor |
-| **Manajemen Halaman Statis** | Halaman seperti "Tentang Kami", "Visi Misi", "Struktur Organisasi" |
-| **Manajemen Kategori** | Pengelompokan artikel berdasarkan kategori |
-| **Manajemen Media** | Upload & kelola gambar dan file |
-| **Manajemen Menu** | Menu navigasi dinamis untuk header, footer, sidebar |
-| **Manajemen Slide** | Slide promosi di halaman utama dengan jadwal tayang |
-| **Pengaturan Situs** | Nama instansi, logo, alamat, kontak, media sosial |
+| Fitur | Deskripsi | Status |
+|-------|-----------|--------|
+| **Manajemen Post/Artikel** | CRUD artikel dengan kategori, gambar unggulan, status draft/publish/archived, rich text editor | ✅ Selesai |
+| **Manajemen Halaman Statis** | Halaman seperti "Tentang Kami", "Visi Misi", "Struktur Organisasi" | ✅ Selesai |
+| **Manajemen Kategori** | Pengelompokan artikel berdasarkan kategori dengan slug otomatis | ✅ Selesai |
+| **Manajemen Media** | Upload & kelola pustaka file/gambar | ✅ Selesai |
+| **Manajemen Menu** | Menu navigasi dinamis untuk header, footer, sidebar dengan item bertingkat | ✅ Selesai |
+| **Manajemen Slide** | Slide promosi di halaman utama dengan jadwal tayang aktif | ✅ Selesai |
+| **Pengaturan Situs** | Nama instansi, logo, alamat, kontak, media sosial | ✅ Selesai |
 
 ### Modul 2: Pertanyaan Masyarakat
 
-| Fitur | Deskripsi |
-|-------|-----------|
-| **Form Pertanyaan Publik** | REST API endpoint untuk masyarakat mengirim pertanyaan (dikonsumsi Flutter) |
-| **Topik Pertanyaan** | Kategori topik pertanyaan (pelayanan, administrasi, dll) |
-| **Manajemen Pertanyaan** | Admin review, jawab, atau tolak pertanyaan |
-| **FAQ** | Kumpulan pertanyaan yang sering diajukan per topik |
-| **Notifikasi Email** | Notifikasi ke penanya ketika pertanyaan dijawab |
+| Fitur | Deskripsi | Status |
+|-------|-----------|--------|
+| **Form Pertanyaan Publik** | REST API endpoint untuk masyarakat mengirim pertanyaan (dikonsumsi Flutter) dengan rate limiting | ✅ Selesai |
+| **Topik Pertanyaan** | Kategori topik pertanyaan (pelayanan, administrasi, bansos, sarana publik) | ✅ Selesai |
+| **Manajemen Pertanyaan** | Admin review, jawab, atau tolak pertanyaan masuk via Filament Resource | ✅ Selesai |
+| **FAQ** | Kumpulan pertanyaan yang sering diajukan per topik | ✅ Selesai |
+| **Notifikasi Email** | Notification class `QuestionAnsweredNotification` untuk mengirim email otomatis saat ditanggapi | ✅ Selesai |
 
 ---
 
@@ -246,190 +246,96 @@ flowchart LR
 ### Fase 1: Fondasi & Konfigurasi ⏱️ ~2 hari
 
 - [x] Install Laravel 13 + Filament v5
-- [ ] Konfigurasi database (`.env`)
-- [ ] Setup Filament Admin Panel (tema, warna, branding)
-- [ ] Konfigurasi role & permission pada model User
-- [ ] Buat migration untuk tabel `settings`
-- [ ] Buat `SettingResource` di Filament
+- [x] Konfigurasi database (`.env`)
+- [x] Setup Filament Admin Panel (tema Teal, branding, navigasi terkelompok)
+- [x] Konfigurasi role & permission pada model User (Admin, Editor, Viewer)
+- [x] Buat migration untuk tabel `settings`
+- [x] Buat `SettingResource` di Filament
 
 ### Fase 2: Modul CMS ⏱️ ~5 hari
 
-- [ ] **Kategori**
-  - [ ] Buat Model, Migration, Factory, Seeder
-  - [ ] Buat `CategoryResource` (Filament)
-- [ ] **Post/Artikel**
-  - [ ] Buat Model, Migration, Factory, Seeder
-  - [ ] Buat `PostResource` (Filament) dengan rich text editor
-  - [ ] Implementasi slug otomatis, featured image, status filter
-- [ ] **Halaman Statis**
-  - [ ] Buat Model, Migration
-  - [ ] Buat `PageResource` (Filament)
-- [ ] **Media Library**
-  - [ ] Buat Model, Migration
-  - [ ] Buat `MediaResource` atau integrasikan Filament Spatie Media Library
-- [ ] **Menu & Menu Items**
-  - [ ] Buat Model, Migration
-  - [ ] Buat `MenuResource` dengan nested menu items (Repeater)
-- [ ] **Slide**
-  - [ ] Buat Model, Migration
-  - [ ] Buat `SlideResource` (Filament)
+- [x] **Kategori**
+  - [x] Buat Model, Migration, Factory, Seeder
+  - [x] Buat `CategoryResource` (Filament)
+- [x] **Post/Artikel**
+  - [x] Buat Model, Migration, Factory, Seeder
+  - [x] Buat `PostResource` (Filament) dengan rich text editor
+  - [x] Implementasi slug otomatis, featured image, status filter
+- [x] **Halaman Statis**
+  - [x] Buat Model, Migration, Factory, Seeder
+  - [x] Buat `PageResource` (Filament)
+- [x] **Media Library**
+  - [x] Buat Model, Migration, Factory
+  - [x] Buat `MediaResource` (Filament)
+- [x] **Menu & Menu Items**
+  - [x] Buat Model, Migration, Factory, Seeder
+  - [x] Buat `MenuResource` dengan nested menu items (Repeater)
+- [x] **Slide**
+  - [x] Buat Model, Migration, Factory, Seeder
+  - [x] Buat `SlideResource` (Filament)
 
 ### Fase 3: Modul Pertanyaan Masyarakat ⏱️ ~3 hari
 
-- [ ] **Topik Pertanyaan**
-  - [ ] Buat Model, Migration
-  - [ ] Buat `QuestionTopicResource` (Filament)
-- [ ] **Pertanyaan**
-  - [ ] Buat Model, Migration
-  - [ ] Buat `QuestionResource` (Filament) dengan filter status
-  - [ ] Implementasi validasi & rate limiting pada API
-- [ ] **Jawaban Pertanyaan**
-  - [ ] Buat Model, Migration
-  - [ ] Integrasikan jawaban sebagai Relation Manager di `QuestionResource`
-  - [ ] Kirim notifikasi email ke penanya
-- [ ] **FAQ**
-  - [ ] Buat Model, Migration
-  - [ ] Buat `FaqResource` (Filament)
+- [x] **Topik Pertanyaan**
+  - [x] Buat Model, Migration, Factory, Seeder
+  - [x] Buat `QuestionTopicResource` (Filament)
+- [x] **Pertanyaan**
+  - [x] Buat Model, Migration, Factory, Seeder
+  - [x] Buat `QuestionResource` (Filament) dengan filter status & badge count
+  - [x] Implementasi validasi & rate limiting pada API (`throttle:10,1`)
+- [x] **Jawaban Pertanyaan**
+  - [x] Buat Model, Migration, Factory
+  - [x] Integrasikan jawaban langsung di `QuestionResource` (Repeater riwayat jawaban)
+  - [x] Kirim notifikasi email ke penanya (`QuestionAnsweredNotification`)
+- [x] **FAQ**
+  - [x] Buat Model, Migration, Factory, Seeder
+  - [x] Buat `FaqResource` (Filament)
 
 ### Fase 4: REST API untuk Flutter ⏱️ ~4 hari
 
-- [ ] Install & konfigurasi Laravel Sanctum untuk autentikasi API
-- [ ] **API Publik (tanpa auth)**
-  - [ ] `GET /api/posts` — Daftar artikel (pagination, filter kategori)
-  - [ ] `GET /api/posts/{slug}` — Detail artikel
-  - [ ] `GET /api/pages/{slug}` — Detail halaman statis
-  - [ ] `GET /api/categories` — Daftar kategori
-  - [ ] `GET /api/slides` — Daftar slide aktif
-  - [ ] `GET /api/menus/{location}` — Menu berdasarkan lokasi (header/footer/sidebar)
-  - [ ] `GET /api/settings` — Pengaturan situs (nama, logo, kontak, dll)
-  - [ ] `GET /api/faqs` — Daftar FAQ (filter per topik)
-  - [ ] `GET /api/question-topics` — Daftar topik pertanyaan
-  - [ ] `GET /api/questions` — Daftar pertanyaan yang sudah dijawab (publik)
-  - [ ] `POST /api/questions` — Kirim pertanyaan baru (throttle/rate limit)
-- [ ] Buat API Resource classes (`PostResource`, `SlideResource`, dll) untuk response formatting
-- [ ] Implementasi API versioning (`/api/v1/...`)
-- [ ] Dokumentasi API (menggunakan Scramble atau koleksi Postman)
-- [ ] CORS configuration untuk akses dari Flutter
+- [x] Install & konfigurasi Laravel Sanctum untuk autentikasi API
+- [x] **API Publik (tanpa auth)**
+  - [x] `GET /api/v1/posts` — Daftar artikel (pagination, filter kategori, search)
+  - [x] `GET /api/v1/posts/{slug}` — Detail artikel (auto increment view_count)
+  - [x] `GET /api/v1/pages` — Daftar halaman statis
+  - [x] `GET /api/v1/pages/{slug}` — Detail halaman statis
+  - [x] `GET /api/v1/categories` — Daftar kategori
+  - [x] `GET /api/v1/categories/{slug}` — Detail kategori
+  - [x] `GET /api/v1/slides` — Daftar slide aktif
+  - [x] `GET /api/v1/menus` — Daftar semua menu aktif
+  - [x] `GET /api/v1/menus/{location}` — Menu berdasarkan lokasi (header/footer/sidebar)
+  - [x] `GET /api/v1/settings` — Pengaturan situs (nama, logo, kontak, medsos)
+  - [x] `GET /api/v1/faqs` — Daftar FAQ (filter per topik & search)
+  - [x] `GET /api/v1/question-topics` — Daftar topik pertanyaan
+  - [x] `GET /api/v1/questions` — Daftar pertanyaan yang sudah dijawab (publik)
+  - [x] `GET /api/v1/questions/{id}` — Detail pertanyaan dan jawaban publik
+  - [x] `POST /api/v1/questions` — Kirim pertanyaan baru (validasi + rate limit)
+- [x] Buat API Resource classes (`PostResource`, `SlideResource`, `MenuResource`, dll) untuk response formatting
+- [x] Implementasi API versioning (`/api/v1/...`)
+- [x] Dokumentasi API (Postman Collection: `docs/postman_collection.json`)
+- [x] CORS configuration untuk akses dari Flutter (`config/cors.php`)
 
 ### Fase 5: Polish & Deployment ⏱️ ~2 hari
 
-- [ ] Dashboard widget (statistik artikel, pertanyaan masuk, dll)
-- [ ] Optimasi performa API (caching, eager loading, response compression)
-- [ ] Testing (unit & feature tests untuk API endpoints)
-- [ ] Deployment & konfigurasi server
+- [x] Dashboard widget (statistik artikel, pertanyaan masuk, list artikel & pertanyaan terbaru)
+- [x] Testing (unit & feature tests: 15 tests, 186 assertions - 100% passing)
+- [x] Formatter Laravel Pint diterapkan ke seluruh file baru
+- [ ] Deployment ke server production / cloud
 
 ---
 
-## 🗃️ Struktur File yang Akan Dibuat
+## 🔑 Kredensial Default (Testing / Seeder)
 
-```
-app/
-├── Models/
-│   ├── User.php (modifikasi: tambah role)
-│   ├── Category.php
-│   ├── Post.php
-│   ├── Page.php
-│   ├── Media.php
-│   ├── Menu.php
-│   ├── MenuItem.php
-│   ├── Slide.php
-│   ├── Setting.php
-│   ├── Question.php
-│   ├── QuestionAnswer.php
-│   ├── QuestionTopic.php
-│   └── Faq.php
-├── Filament/
-│   ├── Resources/
-│   │   ├── CategoryResource.php
-│   │   ├── PostResource.php
-│   │   ├── PageResource.php
-│   │   ├── MediaResource.php
-│   │   ├── MenuResource.php
-│   │   ├── SlideResource.php
-│   │   ├── SettingResource.php
-│   │   ├── QuestionResource.php
-│   │   ├── QuestionTopicResource.php
-│   │   └── FaqResource.php
-│   └── Widgets/
-│       ├── StatsOverviewWidget.php
-│       ├── LatestQuestionsWidget.php
-│       └── LatestPostsWidget.php
-├── Http/
-│   ├── Controllers/
-│   │   └── Api/
-│   │       └── V1/
-│   │           ├── PostController.php
-│   │           ├── PageController.php
-│   │           ├── CategoryController.php
-│   │           ├── SlideController.php
-│   │           ├── MenuController.php
-│   │           ├── SettingController.php
-│   │           ├── QuestionController.php
-│   │           ├── QuestionTopicController.php
-│   │           └── FaqController.php
-│   └── Resources/
-│       └── Api/
-│           └── V1/
-│               ├── PostResource.php
-│               ├── PageResource.php
-│               ├── CategoryResource.php
-│               ├── SlideResource.php
-│               ├── MenuResource.php
-│               ├── MenuItemResource.php
-│               ├── SettingResource.php
-│               ├── QuestionResource.php
-│               ├── QuestionTopicResource.php
-│               ├── QuestionAnswerResource.php
-│               └── FaqResource.php
-└── Notifications/
-    └── QuestionAnsweredNotification.php
-
-database/
-├── migrations/
-│   ├── xxxx_create_categories_table.php
-│   ├── xxxx_create_posts_table.php
-│   ├── xxxx_create_pages_table.php
-│   ├── xxxx_create_media_table.php
-│   ├── xxxx_create_menus_table.php
-│   ├── xxxx_create_menu_items_table.php
-│   ├── xxxx_create_slides_table.php
-│   ├── xxxx_create_settings_table.php
-│   ├── xxxx_create_question_topics_table.php
-│   ├── xxxx_create_questions_table.php
-│   ├── xxxx_create_question_answers_table.php
-│   └── xxxx_create_faqs_table.php
-├── factories/
-└── seeders/
-
-routes/
-└── api.php (REST API routes)
-```
+| Role | Email | Password | Panel URL |
+|------|-------|----------|-----------|
+| **Super Admin** | `admin@muslih.id` | `password` | `/admin` |
+| **Editor** | `editor@muslih.id` | `password` | `/admin` |
 
 ---
 
-## ⚙️ Tech Stack
+## 🚀 Koleksi Postman untuk Frontend Flutter
 
-| Komponen | Teknologi |
-|----------|-----------|
-| Backend Framework | Laravel 13 |
-| Admin Panel | Filament v5.11 |
-| PHP | 8.3+ |
-| Database | MySQL / PostgreSQL |
-| API Authentication | Laravel Sanctum (token-based) |
-| Rich Text Editor | Filament TipTap Editor |
-| File Storage | Laravel Filesystem (local/S3) |
-| Notifikasi | Laravel Notifications (email) |
-| API Documentation | Scramble / Postman Collection |
-| Frontend (terpisah) | Flutter (mobile & web) |
+File Postman Collection v2.1 tersedia di:
+`docs/postman_collection.json`
 
----
-
-> [!TIP]
-> Mulai dari **Fase 1** terlebih dahulu. Setelah fondasi siap, kita bisa langsung mengeksekusi pembuatan model, migration, dan Filament Resources secara bertahap.
-
-> [!IMPORTANT]
-> Pastikan database sudah dikonfigurasi di file `.env` sebelum memulai migrasi. Jalankan `php artisan migrate` setelah setiap fase migration selesai.
-
-> [!NOTE]
-> Arsitektur ini menggunakan pola **API-first**: Laravel sebagai backend murni (Admin Panel + REST API), sementara Flutter mengkonsumsi data melalui REST API. Tidak ada Blade views atau Livewire di sisi publik.
-
+Dapat langsung diimpor ke Postman / Insomnia / Thunder Client untuk pengujian dan integrasi dengan aplikasi Flutter.

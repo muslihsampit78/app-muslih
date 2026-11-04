@@ -19,4 +19,3 @@ enum MenuItemType: string
         };
     }
 }
-

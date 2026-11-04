@@ -1,0 +1,188 @@
+{
+  "info": {
+    "_postman_id": "muslih-cms-api-v1",
+    "name": "Portal CMS & Layanan Publik API (v1)",
+    "description": "Koleksi REST API untuk integrasi Frontend Flutter (Mobile & Web) dengan Backend Laravel 13 + Filament v5",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000/api/v1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Kategori (Categories)",
+      "item": [
+        {
+          "name": "Daftar Kategori",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/categories", "host": ["{{baseUrl}}"], "path": ["categories"] }
+          }
+        },
+        {
+          "name": "Detail Kategori by Slug",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/categories/berita-kebijakan", "host": ["{{baseUrl}}"], "path": ["categories", "berita-kebijakan"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Artikel & Berita (Posts)",
+      "item": [
+        {
+          "name": "Daftar Artikel (Pagination & Search)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/posts?page=1&per_page=10&search=&category=&featured=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["posts"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "per_page", "value": "10" },
+                { "key": "search", "value": "" },
+                { "key": "category", "value": "" },
+                { "key": "featured", "value": "0" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Detail Artikel by Slug",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/posts/peluncuran-aplikasi-layanan-digital-terpadu-untuk-masyarakat", "host": ["{{baseUrl}}"], "path": ["posts", "peluncuran-aplikasi-layanan-digital-terpadu-untuk-masyarakat"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Halaman Statis (Pages)",
+      "item": [
+        {
+          "name": "Daftar Halaman",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/pages", "host": ["{{baseUrl}}"], "path": ["pages"] }
+          }
+        },
+        {
+          "name": "Detail Halaman (Tentang Kami)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/pages/tentang-kami", "host": ["{{baseUrl}}"], "path": ["pages", "tentang-kami"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Slide & Banner Beranda",
+      "item": [
+        {
+          "name": "Daftar Slide Aktif",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/slides", "host": ["{{baseUrl}}"], "path": ["slides"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Menu Navigasi",
+      "item": [
+        {
+          "name": "Menu Header",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/menus/header", "host": ["{{baseUrl}}"], "path": ["menus", "header"] }
+          }
+        },
+        {
+          "name": "Menu Footer",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/menus/footer", "host": ["{{baseUrl}}"], "path": ["menus", "footer"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pengaturan Situs (Settings)",
+      "item": [
+        {
+          "name": "Semua Pengaturan",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/settings", "host": ["{{baseUrl}}"], "path": ["settings"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pertanyaan Masyarakat",
+      "item": [
+        {
+          "name": "Daftar Topik Pertanyaan",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/question-topics", "host": ["{{baseUrl}}"], "path": ["question-topics"] }
+          }
+        },
+        {
+          "name": "Daftar Pertanyaan Publik Terjawab",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/questions?page=1&per_page=10", "host": ["{{baseUrl}}"], "path": ["questions"], "query": [{ "key": "page", "value": "1" }, { "key": "per_page", "value": "10" }] }
+          }
+        },
+        {
+          "name": "Kirim Pertanyaan Baru (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"topic_id\": 1,\n  \"name\": \"Budi Prakoso\",\n  \"email\": \"budi@example.com\",\n  \"phone\": \"081234567890\",\n  \"subject\": \"Pertanyaan terkait persyaratan perizinan\",\n  \"body\": \"Mohon penjelasan terkait dokumen apa saja yang harus disiapkan untuk perpanjangan izin domisili tahun berjalan. Terima kasih.\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/questions", "host": ["{{baseUrl}}"], "path": ["questions"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "FAQ",
+      "item": [
+        {
+          "name": "Daftar FAQ",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/faqs?topic=&search=", "host": ["{{baseUrl}}"], "path": ["faqs"], "query": [{ "key": "topic", "value": "" }, { "key": "search", "value": "" }] }
+          }
+        }
+      ]
+    }
+  ]
+}
+
