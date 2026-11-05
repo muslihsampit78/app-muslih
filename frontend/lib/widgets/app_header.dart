@@ -65,7 +65,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
                           height: 40,
                           width: 40,
                           fit: BoxFit.contain,
-                          errorBuilder: (_, __, ___) => _defaultLogoBadge(),
+                          errorBuilder: (context, error, stackTrace) => _defaultLogoBadge(),
                         )
                       else
                         _defaultLogoBadge(),

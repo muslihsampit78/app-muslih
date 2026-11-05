@@ -155,7 +155,7 @@ class _PageDetailScreenState extends State<PageDetailScreen> {
                   imageUrl,
                   width: double.infinity,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                  errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
                 ),
               ),
               const SizedBox(height: 32),

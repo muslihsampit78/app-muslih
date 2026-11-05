@@ -215,7 +215,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: prov.questions.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 16),
+                separatorBuilder: (_, index) => const SizedBox(height: 16),
                 itemBuilder: (context, index) {
                   final q = prov.questions[index];
                   return _buildQuestionCard(context, q, locale, l10n);
@@ -576,7 +576,7 @@ class _AskQuestionDialogState extends State<_AskQuestionDialog> {
 
                 // Topic Dropdown
                 DropdownButtonFormField<int>(
-                  value: _selectedTopicId,
+                  initialValue: _selectedTopicId,
                   decoration: InputDecoration(
                     labelText: l10n?.formTopic ?? 'Topik Pertanyaan *',
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),

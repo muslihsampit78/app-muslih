@@ -44,7 +44,7 @@ class PostCard extends StatelessWidget {
                         ? Image.network(
                             imageUrl,
                             fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) => _buildPlaceholder(),
+                            errorBuilder: (context, error, stackTrace) => _buildPlaceholder(),
                           )
                         : _buildPlaceholder(),
                   ),

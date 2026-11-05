@@ -186,7 +186,7 @@ class _FaqScreenState extends State<FaqScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: filteredFaqs.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 12),
+                separatorBuilder: (_, index) => const SizedBox(height: 12),
                 itemBuilder: (context, index) {
                   final faq = filteredFaqs[index];
                   return Container(
